@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tastiera Virtuale</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background: rgba(255, 255, 255, 0.8);
+            margin: 0;
+            padding: 0;
+        }
+
+        #page-content {
+            position: relative;
+            z-index: 1;
+            padding-bottom: 100px;
+            margin: 30px;
+        }
+
+        #keyboard-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(248, 249, 250, 0.9);
+            border-bottom: 1px solid #ced4da;
+            z-index: 10000;
+            padding: 10px;
+            box-shadow: 0px 5px 5px -5px #888888;
+            margin: 30px;
+        }
+
+        .keyboard-layout {
+            display: none;
+        }
+
+        .keyboard-row {
+            display: flex;
+            justify-content: center;
+            padding: 5px;
+        }
+
+        .keyboard-key {
+            width: 40px;
+            height: 40px;
+            margin: 2px;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+            border: 1px solid #ced4da;
+            border-radius: 3px;
+            display: inline-block;
+        }
+        .keyboard-key-special{
+            width: 70px;
+            height: 40px;
+            margin: 2px;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+            border: 1px solid #ced4da;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        .uppercase-toggle {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <form>
+        <div class="form-group">
+            <label for="input1">Input 1:</label>
+            <input type="text" class="form-control" id="input1">
+        </div>
+    </form>
+
+    <form>
+        <div class="form-group">
+            <label for="input2">Input 2:</label>
+            <input type="text" class="form-control" id="input2">
+        </div>
+    </form>
+</div>
+
+<div id="keyboard-container">
+    <button class="btn btn-primary float-right" id="btnClose">Chiudi</button>
+    <div id="input-name"></div>
+    <input type="text" id="keyboard-input" class="form-control mb-2">
+
+    <div class="keyboard-row">
+        <div class="keyboard-key" data-key="1">1</div>
+        <div class="keyboard-key" data-key="2">2</div>
+        <div class="keyboard-key" data-key="3">3</div>
+        <div class="keyboard-key" data-key="4">4</div>
+        <div class="keyboard-key" data-key="5">5</div>
+        <div class="keyboard-key" data-key="6">6</div>
+        <div class="keyboard-key" data-key="7">7</div>
+        <div class="keyboard-key" data-key="8">8</div>
+        <div class="keyboard-key" data-key="9">9</div>
+        <div class="keyboard-key" data-key="0">0</div>
+    </div>
+    <div class="keyboard-row">
+        <div class="keyboard-key" data-key="q">q</div>
+        <div class="keyboard-key" data-key="w">w</div>
+        <div class="keyboard-key" data-key="e">e</div>
+        <div class="keyboard-key" data-key="r">r</div>
+        <div class="keyboard-key" data-key="t">t</div>
+        <div class="keyboard-key" data-key="y">y</div>
+        <div class="keyboard-key" data-key="u">u</div>
+        <div class="keyboard-key" data-key="i">i</div>
+        <div class="keyboard-key" data-key="o">o</div>
+        <div class="keyboard-key" data-key="p">p</div>
+    </div>
+    <div class="keyboard-row">
+        <div class="keyboard-key uppercase-toggle" data-key="shift">shift</div>
+        <div class="keyboard-key" data-key="a">a</div>
+        <div class="keyboard-key" data-key="s">s</div>
+        <div class="keyboard-key" data-key="d">d</div>
+        <div class="keyboard-key" data-key="f">f</div>
+        <div class="keyboard-key" data-key="g">g</div>
+        <div class="keyboard-key" data-key="h">h</div>
+        <div class="keyboard-key" data-key="j">j</div>
+        <div class="keyboard-key" data-key="k">k</div>
+        <div class="keyboard-key" data-key="l">l</div>
+    </div>
+    <div class="keyboard-row">
+        <div class="keyboard-key" data-key="z">z</div>
+        <div class="keyboard-key" data-key="x">x</div>
+        <div class="keyboard-key" data-key="c">c</div>
+        <div class="keyboard-key" data-key="v">v</div>
+        <div class="keyboard-key" data-key="b">b</div>
+        <div class="keyboard-key" data-key="n">n</div>
+        <div class="keyboard-key" data-key="m">m</div>
+        <div class="keyboard-key" data-key="←">←</div>
+    </div>
+    <div class="keyboard-row">
+        <div class="keyboard-key-special" data-key=" ">Space</div>
+        <div class="keyboard-key" data-key="→">→</div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var currentInputName = "";
+        var isUppercase = false;
+
+        $('input').click(function () {
+            currentInputName = $(this).attr('id');
+            $('#input-name').text("Modifica: " + currentInputName);
+            $('#keyboard-container').show();
+            $('#keyboard-input').val($(this).val());
+        });
+
+        $('#btnClose').click(function () {
+            $('#keyboard-container').hide();
+        });
+
+        $('.keyboard-key').click(function () {
+            var currentInput = $('#keyboard-input');
+            var key = $(this).data('key');
+
+            if (key === 'shift') { // Tasto per attivare/disattivare lettere maiuscole
+                isUppercase = !isUppercase;
+                updateKeyboardCase();
+            } else if (key === '←') { // Tasto per cancellare
+                currentInput.val(currentInput.val().slice(0, -1));
+            } else {
+                // Modifica qui: Cambia il valore di 'key' in base allo stato di lettere maiuscole/minuscole
+                // Assicurati che key sia sempre una stringa
+                currentInput.val(currentInput.val() + (isUppercase ? String(key).toUpperCase() : String(key).toLowerCase()));
+            }
+        });
+
+
+        function updateKeyboardCase() {
+            var keys = $('.keyboard-key[data-key]');
+            keys.each(function () {
+                var key = $(this).data('key');
+                var isAlphabetic = /^[a-zA-Z]$/.test(key);
+                if (isAlphabetic) {
+                    $(this).text(isUppercase ? key.toUpperCase() : key.toLowerCase());
+                }
+            });
+
+            var uppercaseToggle = $('.uppercase-toggle');
+            if (isUppercase) {
+                uppercaseToggle.addClass('uppercase-toggle');
+            } else {
+                uppercaseToggle.removeClass('uppercase-toggle');
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
