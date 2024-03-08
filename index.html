@@ -57,6 +57,7 @@
             border: 1px solid #ced4da;
             border-radius: 3px;
             display: inline-block;
+            font-size: 20px;
         }
 
 
@@ -73,15 +74,26 @@
         }
 
         .keyboard-key[data-key=" "] {
-            width: 250px;
+            width: 500px;
             text-align: center;
             line-height: 50px;
         }
 
         .keyboard-key[data-key="delete"],
+        .keyboard-key[data-key="enter"],
         .keyboard-key[data-key="shift"],
         .keyboard-key[data-key="capslock"] {
             width: 200px;
+        }
+
+        .capslock-toggle{
+            background-color: rgba(248, 249, 250, 0.9);
+            color: black;
+        }
+        
+        .shift-toggle{
+            background-color: rgba(248, 249, 250, 0.9);
+            color: black;
         }
 
         .capslock-toggle.active {
@@ -128,7 +140,6 @@
         <input type="text" id="keyboard-input" class="form-control mb-2">
 
         <div class="keyboard-row">
-            <div class="keyboard-key" data-key="\">&bsol;</div>
             <div class="keyboard-key" data-key="1">1</div>
             <div class="keyboard-key" data-key="2">2</div>
             <div class="keyboard-key" data-key="3">3</div>
@@ -139,10 +150,10 @@
             <div class="keyboard-key" data-key="8">8</div>
             <div class="keyboard-key" data-key="9">9</div>
             <div class="keyboard-key" data-key="0">0</div>
-            <div class="keyboard-key" data-key="?">?</div>
             <div class="keyboard-key" data-key="delete">delete</div>
         </div>
         <div class="keyboard-row">
+            <div class="keyboard-key" data-key="  ">&nbsp;</div>
             <div class="keyboard-key" data-key="q">q</div>
             <div class="keyboard-key" data-key="w">w</div>
             <div class="keyboard-key" data-key="e">e</div>
@@ -152,7 +163,7 @@
             <div class="keyboard-key" data-key="u">u</div>
             <div class="keyboard-key" data-key="i">i</div>
             <div class="keyboard-key" data-key="o">o</div>
-            <div class="keyboard-key" data-key="p">p</div>
+            <div class="keyboard-key" data-key="p">p</div>           
         </div>
         <div class="keyboard-row">
             <div class="keyboard-key capslock-toggle" data-key="capslock">caps lock</div>
@@ -164,9 +175,7 @@
             <div class="keyboard-key" data-key="h">h</div>
             <div class="keyboard-key" data-key="j">j</div>
             <div class="keyboard-key" data-key="k">k</div>
-            <div class="keyboard-key" data-key="l">l</div>
-            <div class="keyboard-key" data-key="[">[</div>
-            <div class="keyboard-key" data-key="]">]</div>
+            <div class="keyboard-key" data-key="enter">Enter</div>
         </div>
         <div class="keyboard-row">
             <div class="keyboard-key shift-toggle" data-key="shift">shift</div>
@@ -178,13 +187,14 @@
             <div class="keyboard-key" data-key="n">n</div>
             <div class="keyboard-key" data-key="m">m</div>
             <div class="keyboard-key" data-key="↑">↑</div>
+            <div class="keyboard-key shift-toggle" data-key="shift">shift</div>
         </div>
         <div class="keyboard-row">
-            <div class="keyboard-key" data-key="&lt;">&lt;</div>
-            <div class="keyboard-key" data-key="&gt;">&gt;</div>
+            <div class="keyboard-key" data-key="symbol">#@=</div>
             <div class="keyboard-key" data-key=" ">&nbsp;</div>
-            <div class="keyboard-key" data-key=";">;</div>
-            <div class="keyboard-key" data-key="'">'</div>
+            <div class="keyboard-key" data-key="←">←</div>
+            <div class="keyboard-key" data-key="↓">↓</div>
+            <div class="keyboard-key" data-key="→">→</div>
         </div>
     </div>
 
@@ -197,13 +207,19 @@
 
             $('input').click(function () {
                 currentInputName = $(this).attr('id');
-                $('#input-name').text("Modifica: " + currentInputName);
+                $('#input-name').text(currentInputName);
                 $('#keyboard-container').show();
                 $('#keyboard-input').val($(this).val());
                 $('#keyboard-input').focus();
             });
 
             $('#btnClose').click(function () {
+                $('#keyboard-container').hide();
+            });
+
+            $('.keyboard-key[data-key="enter"]').click(function () {
+                var currentInput = $('#' + currentInputName);
+                currentInput.val($('#keyboard-input').val());
                 $('#keyboard-container').hide();
             });
 
@@ -283,6 +299,27 @@
                     capsLockToggle.toggleClass('active', isCapsLock);
                 });
             }
+
+            $(document).on('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    var currentInput = $('#' + currentInputName);
+                    currentInput.val($('#keyboard-input').val());
+                    $('#keyboard-container').hide();
+                }
+            });
+
+            $('.keyboard-key[data-key="symbol"]').click(function () {
+    var symbolKeys = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '{', '}', '|', ':', '"', '<', '>', '?', ',', '.', '/'];
+    var keys = $('.keyboard-key[data-key]');
+    keys.each(function (index) {
+        var key = $(this).data('key');
+        if (/[a-zA-Z0-9]/.test(key)) {
+            $(this).text(symbolKeys[index]);
+        }
+    });
+});
+
+
         });
     </script>
 
