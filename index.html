@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tastiera Virtuale</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -36,6 +36,8 @@
             padding: 10px;
             box-shadow: 0px 5px 5px -5px #888888;
             margin: 30px;
+            font-size: 20px;
+            border-radius: 15px;
         }
 
         .keyboard-layout {
@@ -55,10 +57,10 @@
             text-align: center;
             line-height: 80px;
             cursor: pointer;
-            border: 1px solid #ced4da;
-            border-radius: 3px;
+            border: 1.5px solid lightgray;
+            border-radius: 10px;
             display: inline-block;
-            font-size: 20px;
+            font-size: 25px;
         }
 
         .uppercase-toggle,
@@ -71,11 +73,11 @@
         #btnClose {
             background-color: #ff0000;
             margin-bottom: 5px;
+            border-radius: 10px;
         }
 
         .keyboard-key[data-key=" "] {
             width: calc(100% / 2.9);
-
         }
 
         .keyboard-key[data-key="delete"],
@@ -83,6 +85,15 @@
         .keyboard-key[data-key="shift"],
         .keyboard-key[data-key="capslock"] {
             width: 200px;
+        }
+
+        .keyboard-key[data-key="↑"],
+        .keyboard-key[data-key="↓"] {
+            height: 39px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 2px;
         }
 
         .capslock-toggle {
@@ -105,6 +116,24 @@
             color: #fff;
         }
 
+        #keyboard-input {
+            outline: none !important;
+            border-color: #007bff;
+            box-shadow: 0 0 10px #007bff;
+            position: relative;
+        }
+
+        #keyboard-input::after {
+            content: "|";
+            position: absolute;
+            animation: blink-caret 1s infinite;
+        }
+
+        @keyframes blink-caret {
+            50% {
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 
@@ -134,9 +163,9 @@
     </div>
 
     <div id="keyboard-container">
-        <button class="btn btn-danger float-right" id="btnClose">X</button>
+        <button class="btn btn-danger float-right" id="btnClose"><i class="fa-brands fa-xbox"></i></button>
         <div id="input-name"></div>
-        <input type="text" id="keyboard-input" class="form-control mb-2">
+        <input type="text" id="keyboard-input" class="form-control mb-2" autofocus>
 
         <div class="keyboard-row">
             <div class="keyboard-key" data-key="1">1</div>
@@ -164,7 +193,7 @@
             <div class="keyboard-key" data-key="p">p</div>
         </div>
         <div class="keyboard-row">
-            <div class="keyboard-key capslock-toggle" data-key="capslock"><i class="fas fa-lock"></i></div>
+            <div class="keyboard-key capslock-toggle" data-key="capslock"><i class="fa-solid fa-arrow-down-up-lock"></i></div>
             <div class="keyboard-key" data-key="a">a</div>
             <div class="keyboard-key" data-key="s">s</div>
             <div class="keyboard-key" data-key="d">d</div>
@@ -173,10 +202,10 @@
             <div class="keyboard-key" data-key="h">h</div>
             <div class="keyboard-key" data-key="j">j</div>
             <div class="keyboard-key" data-key="k">k</div>
-            <div class="keyboard-key" data-key="enter"><i class="fas fa-arrow-right"></i></div>
+            <div class="keyboard-key" data-key="enter"><i class="fa-solid fa-arrow-right-to-bracket"></i></div>
         </div>
         <div class="keyboard-row">
-            <div class="keyboard-key shift-toggle" data-key="shift"><i class="fas fa-arrow-up"></i></div>
+            <div class="keyboard-key shift-toggle" data-key="shift"><i class="fa-solid fa-arrow-up-z-a"></i></div>
             <div class="keyboard-key" data-key="z">z</div>
             <div class="keyboard-key" data-key="x">x</div>
             <div class="keyboard-key" data-key="c">c</div>
@@ -184,20 +213,21 @@
             <div class="keyboard-key" data-key="b">b</div>
             <div class="keyboard-key" data-key="n">n</div>
             <div class="keyboard-key" data-key="m">m</div>
-            <div class="keyboard-key" data-key="↑"><i class="fas fa-arrow-up"></i></div>
-            <div class="keyboard-key shift-toggle" data-key="shift"><i class="fas fa-arrow-up"></i></div>
+            <div class="keyboard-key shift-toggle" data-key="shift"><i class="fa-solid fa-arrow-up-z-a"></i></div>
         </div>
         <div class="keyboard-row">
-            <div class="keyboard-key" data-key=""><i class="fas fa-solid fa-globe"></i></div>
-            <div class="keyboard-key symbol-toggle" data-key="symbol">#+=</div>
-            <div class="keyboard-key" data-key=" ">&nbsp;</div>
+            <div class="keyboard-key" data-key="layout"><i class="fas fa-solid fa-globe"></i></div>
+            <div class="keyboard-key symbol-toggle" data-key="symbol"><b>#+=</b></div>
+            <div class="keyboard-key" data-key=" "></div>
             <div class="keyboard-key" data-key="←"><i class="fas fa-arrow-left"></i></div>
-            <div class="keyboard-key" data-key="↓"><i class="fas fa-arrow-down"></i></div>
+            <div>
+                <div class="keyboard-key" data-key="↑"><i class="fas fa-arrow-up"></i></div>
+                <div class="keyboard-key" data-key="↓"><i class="fas fa-arrow-down"></i></div>
+            </div>
             <div class="keyboard-key" data-key="→"><i class="fas fa-arrow-right"></i></div>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function () {
             var currentInputName = "";
@@ -205,29 +235,28 @@
             var isCapsLock = false;
             var shiftPressed = false;
             var isSymbolMode = false;
-            var isCapsLock = false;
 
             var layouts = {
                 normal: {
                     '1': '1', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', '0': '0',
                     'q': 'q', 'w': 'w', 'e': 'e', 'r': 'r', 't': 't', 'y': 'y', 'u': 'u', 'i': 'i', 'o': 'o', 'p': 'p',
                     'a': 'a', 's': 's', 'd': 'd', 'f': 'f', 'g': 'g', 'h': 'h', 'j': 'j', 'k': 'k',
-                    'z': 'z', 'x': 'x', 'c': 'c', 'v': 'v', 'b': 'b', 'n': 'n', 'm': 'm', '↑': '↑',
-                    'symbol': '#+=', ' ': ' ', '←': '←', '↓': '↓', '→': '→'
+                    'z': 'z', 'x': 'x', 'c': 'c', 'v': 'v', 'b': 'b', 'n': 'n', 'm': 'm',
+                    'symbol': '#+=',
                 },
                 uppercase: {
                     '1': '1', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', '0': '0',
                     'q': 'Q', 'w': 'W', 'e': 'E', 'r': 'R', 't': 'T', 'y': 'Y', 'u': 'U', 'i': 'I', 'o': 'O', 'p': 'P',
                     'a': 'A', 's': 'S', 'd': 'D', 'f': 'F', 'g': 'G', 'h': 'H', 'j': 'J', 'k': 'K',
-                    'z': 'Z', 'x': 'X', 'c': 'C', 'v': 'V', 'b': 'B', 'n': 'N', 'm': 'M', '↑': '↑',
-                    'symbol': '#+=', ' ': ' ', '←': '←', '↓': '↓', '→': '→'
+                    'z': 'Z', 'x': 'X', 'c': 'C', 'v': 'V', 'b': 'B', 'n': 'N', 'm': 'M',
+                    'symbol': '#+=',
                 },
                 symbols: {
                     '1': '1', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', '0': '0',
                     'q': '`', 'w': '~', 'e': '!', 'r': '@', 't': '#', 'y': '$', 'u': '%', 'i': '^', 'o': '&', 'p': '*',
                     'a': '(', 's': ')', 'd': '_', 'f': '+', 'g': '{', 'h': '}', 'j': '|', 'k': ':',
-                    'z': '"', 'x': '<', 'c': '>', 'v': '?', 'b': ',', 'n': '.', 'm': '/', '↑': '↑',
-                    'symbol': 'ABC', ' ': ' ', '←': '←', '↓': '↓', '→': '→'
+                    'z': '"', 'x': '<', 'c': '>', 'v': '?', 'b': ',', 'n': '.', 'm': '/',
+                    'symbol': 'ABC',
                 }
             };
 
@@ -283,6 +312,13 @@
                     $('#' + currentInputName).prev('form').find('input').focus();
                 } else if (key === '↓') {
                     $('#' + currentInputName).next('form').find('input').focus();
+                } else if (key === ' ') {
+                    var cursorPos = currentInput.prop('selectionStart');
+                    var textBefore = currentInput.val().substring(0, cursorPos);
+                    var textAfter = currentInput.val().substring(cursorPos);
+                    currentInput.val(textBefore + ' ' + textAfter);
+                    currentInput.prop('selectionStart', cursorPos + 1);
+                    currentInput.prop('selectionEnd', cursorPos + 1);
                 } else {
                     var cursorPos = currentInput.prop('selectionStart');
                     var textBefore = currentInput.val().substring(0, cursorPos);
@@ -297,6 +333,8 @@
                         updateKeyboardLayout();
                     }
                 }
+                // Mantieni il focus sull'input anche durante la digitazione
+                currentInput.focus();
             });
 
             function getCurrentLayout() {
@@ -319,11 +357,6 @@
                 updateCapsLock();
                 updateShift();
                 updateSymbolToggle();
-
-                function updateCapsLock() {
-                    var capsLockToggle = $('.keyboard-key[data-key="capslock"]');
-                    capsLockToggle.toggleClass('active', isCapsLock);
-}
             }
 
             function updateCapsLock() {
@@ -349,10 +382,14 @@
                 }
             });
 
+            $('#keyboard-input').on('input', function () {
+                // Mantieni il focus sull'input anche durante la digitazione
+                $(this).focus();
+            });
+
         });
     </script>
 
 </body>
 
 </html>
-
