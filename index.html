@@ -34,7 +34,7 @@
             border-bottom: 1px solid #ced4da;
             z-index: 10000;
             padding: 10px;
-            box-shadow: 0px 5px 5px -5px #888888;
+            box-shadow: 0px 5px 10px 0px #888888;
             margin: 30px;
             font-size: 20px;
             border-radius: 15px;
@@ -77,10 +77,12 @@
         }
 
         .keyboard-key[data-key=" "] {
-            width: calc(100% / 2.9);
+            width: 50%;
         }
 
+        .keyboard-key[data-key="layout"],
         .keyboard-key[data-key="delete"],
+        .keyboard-key[data-key="tab"],
         .keyboard-key[data-key="enter"],
         .keyboard-key[data-key="shift"],
         .keyboard-key[data-key="capslock"] {
@@ -94,6 +96,16 @@
             justify-content: space-around;
             align-items: center;
             margin: 2px;
+        }
+
+        .keyboard-key[data-key="←"],
+        .keyboard-key[data-key="→"] {
+            height: 39px;
+            margin-top: 43px;
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
         }
 
         .capslock-toggle {
@@ -129,6 +141,11 @@
             animation: blink-caret 1s infinite;
         }
 
+        .symbol-toggle.active{
+            background-color: #007bff;
+            color: #fff;
+        }
+
         @keyframes blink-caret {
             50% {
                 opacity: 0;
@@ -157,7 +174,7 @@
         <form>
             <div class="form-group">
                 <label for="input3">Input 3:</label>
-                <input type="text" class="form-control" id="input3">
+                <input type="number" class="form-control" id="input3">
             </div>
         </form>
     </div>
@@ -168,6 +185,7 @@
         <input type="text" id="keyboard-input" class="form-control mb-2" autofocus>
 
         <div class="keyboard-row">
+            <div class="keyboard-key" data-key="`">`</div>
             <div class="keyboard-key" data-key="1">1</div>
             <div class="keyboard-key" data-key="2">2</div>
             <div class="keyboard-key" data-key="3">3</div>
@@ -178,9 +196,12 @@
             <div class="keyboard-key" data-key="8">8</div>
             <div class="keyboard-key" data-key="9">9</div>
             <div class="keyboard-key" data-key="0">0</div>
+            <div class="keyboard-key" data-key="_">_</div>
+            <div class="keyboard-key" data-key="=">=</div>
             <div class="keyboard-key" data-key="delete"><i class="fas fa-backspace"></i></div>
         </div>
         <div class="keyboard-row">
+            <div class="keyboard-key" data-key="tab"><b>tab</b></div>
             <div class="keyboard-key" data-key="q">q</div>
             <div class="keyboard-key" data-key="w">w</div>
             <div class="keyboard-key" data-key="e">e</div>
@@ -191,6 +212,9 @@
             <div class="keyboard-key" data-key="i">i</div>
             <div class="keyboard-key" data-key="o">o</div>
             <div class="keyboard-key" data-key="p">p</div>
+            <div class="keyboard-key" data-key="[">[</div>
+            <div class="keyboard-key" data-key="]">]</div>
+            <div class="keyboard-key" data-key="\">\</div>
         </div>
         <div class="keyboard-row">
             <div class="keyboard-key capslock-toggle" data-key="capslock"><i class="fa-solid fa-arrow-down-up-lock"></i></div>
@@ -202,10 +226,13 @@
             <div class="keyboard-key" data-key="h">h</div>
             <div class="keyboard-key" data-key="j">j</div>
             <div class="keyboard-key" data-key="k">k</div>
+            <div class="keyboard-key" data-key=";">;</div>
+            <div class="keyboard-key" data-key="'">'</div>
             <div class="keyboard-key" data-key="enter"><i class="fa-solid fa-arrow-right-to-bracket"></i></div>
         </div>
         <div class="keyboard-row">
             <div class="keyboard-key shift-toggle" data-key="shift"><i class="fa-solid fa-arrow-up-z-a"></i></div>
+            <div class="keyboard-key" data-key="?">?</div>
             <div class="keyboard-key" data-key="z">z</div>
             <div class="keyboard-key" data-key="x">x</div>
             <div class="keyboard-key" data-key="c">c</div>
@@ -213,12 +240,16 @@
             <div class="keyboard-key" data-key="b">b</div>
             <div class="keyboard-key" data-key="n">n</div>
             <div class="keyboard-key" data-key="m">m</div>
+            <div class="keyboard-key" data-key=",">,</div>
+            <div class="keyboard-key" data-key=".">.</div>
+            <div class="keyboard-key" data-key="/">/</div>
             <div class="keyboard-key shift-toggle" data-key="shift"><i class="fa-solid fa-arrow-up-z-a"></i></div>
         </div>
         <div class="keyboard-row">
-            <div class="keyboard-key" data-key="layout"><i class="fas fa-solid fa-globe"></i></div>
-            <div class="keyboard-key symbol-toggle" data-key="symbol"><b>#+=</b></div>
+            <div class="keyboard-key" data-key="layout"><b>US</b> <i class="fas fa-solid fa-globe"></i></div>
+            <div class="keyboard-key symbol-toggle" data-key="symbol"><b>alt</b></div>
             <div class="keyboard-key" data-key=" "></div>
+            <div class="keyboard-key symbol-toggle" data-key="symbol"><b>alt</b></div>
             <div class="keyboard-key" data-key="←"><i class="fas fa-arrow-left"></i></div>
             <div>
                 <div class="keyboard-key" data-key="↑"><i class="fas fa-arrow-up"></i></div>
@@ -226,7 +257,37 @@
             </div>
             <div class="keyboard-key" data-key="→"><i class="fas fa-arrow-right"></i></div>
         </div>
-    </div>
+    </div> 
+        
+   <!-- <div id="keyboard-container">
+        <button class="btn btn-danger float-right" id="btnClose"><i class="fa-brands fa-xbox"></i></button>
+        <div id="input-name"></div>
+        <input type="text" id="keyboard-input" class="form-control mb-2" autofocus>
+
+        <div class="keyboard-row">
+            <div class="keyboard-key" data-key="7">7</div>
+            <div class="keyboard-key" data-key="8">8</div>
+            <div class="keyboard-key" data-key="9">9</div>
+            <div class="keyboard-key" data-key="-">-</div>
+        </div>
+        <div class="keyboard-row">
+            <div class="keyboard-key" data-key="4">7</div>
+            <div class="keyboard-key" data-key="5">5</div>
+            <div class="keyboard-key" data-key="6">6</div>
+            <div class="keyboard-key" data-key="+">+</div>
+        </div>
+        <div class="keyboard-row">
+            <div class="keyboard-key" data-key="1">1</div>
+            <div class="keyboard-key" data-key="2">2</div>
+            <div class="keyboard-key" data-key="3">3</div>
+            <div class="keyboard-key" data-key="delete"><i class="fas fa-backspace"></i></div>
+        </div>
+        <div class="keyboard-row">
+            <div class="keyboard-key" data-key="0">0</div>
+            <div class="keyboard-key" data-key="enter"><i class="fa-solid fa-arrow-right-to-bracket"></i></div>
+            <div class="keyboard-key" data-key="layout"><b>US</b> <i class="fas fa-solid fa-globe"></i></div>
+        </div>
+    </div> -->
 
     <script>
         $(document).ready(function () {
@@ -238,25 +299,19 @@
 
             var layouts = {
                 normal: {
-                    '1': '1', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', '0': '0',
-                    'q': 'q', 'w': 'w', 'e': 'e', 'r': 'r', 't': 't', 'y': 'y', 'u': 'u', 'i': 'i', 'o': 'o', 'p': 'p',
-                    'a': 'a', 's': 's', 'd': 'd', 'f': 'f', 'g': 'g', 'h': 'h', 'j': 'j', 'k': 'k',
-                    'z': 'z', 'x': 'x', 'c': 'c', 'v': 'v', 'b': 'b', 'n': 'n', 'm': 'm',
-                    'symbol': '#+=',
+                    '`':'`','1': '1', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', '0': '0','_':'_','=':'=',
+                    'q': 'q', 'w': 'w', 'e': 'e', 'r': 'r', 't': 't', 'y': 'y', 'u': 'u', 'i': 'i', 'o': 'o', 'p': 'p','[':'[',']':']','':'',
+                    'a': 'a', 's': 's', 'd': 'd', 'f': 'f', 'g': 'g', 'h': 'h', 'j': 'j', 'k': 'k', ';': ';','': '',
+                    'z': 'z', 'x': 'x', 'c': 'c', 'v': 'v', 'b': 'b', 'n': 'n', 'm': 'm',',': ',','.': '.','/': '/',     
                 },
                 uppercase: {
-                    '1': '1', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', '0': '0',
-                    'q': 'Q', 'w': 'W', 'e': 'E', 'r': 'R', 't': 'T', 'y': 'Y', 'u': 'U', 'i': 'I', 'o': 'O', 'p': 'P',
-                    'a': 'A', 's': 'S', 'd': 'D', 'f': 'F', 'g': 'G', 'h': 'H', 'j': 'J', 'k': 'K',
-                    'z': 'Z', 'x': 'X', 'c': 'C', 'v': 'V', 'b': 'B', 'n': 'N', 'm': 'M',
-                    'symbol': '#+=',
+                    '`':'~','1': '!', '2': '@', '3': '#', '4': '$', '5': '%', '6': '^', '7': '&', '8': '*', '9': '(', '0': ')','_':'-','=':'+',
+                    'q': 'Q', 'w': 'W', 'e': 'E', 'r': 'R', 't': 'T', 'y': 'Y', 'u': 'U', 'i': 'I', 'o': 'O', 'p': 'P','[':'{',']':'}','':'|',
+                    'a': 'A', 's': 'S', 'd': 'D', 'f': 'F', 'g': 'G', 'h': 'H', 'j': 'J', 'k': 'K',';': ';','': '',
+                    'z': 'Z', 'x': 'X', 'c': 'C', 'v': 'V', 'b': 'B', 'n': 'N', 'm': 'M',',': '<','.': '>','/': '?',                 
                 },
-                symbols: {
-                    '1': '1', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', '0': '0',
-                    'q': '`', 'w': '~', 'e': '!', 'r': '@', 't': '#', 'y': '$', 'u': '%', 'i': '^', 'o': '&', 'p': '*',
-                    'a': '(', 's': ')', 'd': '_', 'f': '+', 'g': '{', 'h': '}', 'j': '|', 'k': ':',
-                    'z': '"', 'x': '<', 'c': '>', 'v': '?', 'b': ',', 'n': '.', 'm': '/',
-                    'symbol': 'ABC',
+                alt: {
+                    'e': '€', 
                 }
             };
 
@@ -339,7 +394,7 @@
 
             function getCurrentLayout() {
                 if (isSymbolMode) {
-                    return 'symbols';
+                    return 'alt';
                 } else if (isUppercase || isCapsLock) {
                     return 'uppercase';
                 } else {
