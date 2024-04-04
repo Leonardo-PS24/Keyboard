@@ -1,0 +1,106 @@
+    :root {
+        --keybord-background-color: #d0d3d9;
+        --caps-background-color:#ffffff;
+        --caps-border-color:rgb(196, 195, 195);
+        --special-caps-background-color:#b7bac0;
+        --special-caps-border-color:#b2b2b5;
+
+    }
+    body {
+        background: rgba(255, 255, 255, 0.8);
+        margin: 0;
+        padding: 0;
+    }
+
+    .form-control {
+        margin-top: 10px;
+    }
+
+    .keyboard-row {
+        display: flex;
+        justify-content: center;
+        padding: 5px;
+    }
+
+    .keyboard-key {
+        width: 80px;
+        height: 80px;
+        margin: 2px;
+        text-align: center;
+        line-height: 80px;
+        cursor: pointer;
+        border: 1px solid var(--caps-border-color);
+        background-color: var(--caps-background-color);
+        border-radius: 10px;
+        display: inline-block;
+        font-size: 30px;
+    }
+
+    .keyboard-key[data-key=" "] {
+        width: 50%;
+    }
+
+    .keyboard-key[data-key="close-keyboard"],
+    .keyboard-key[data-key="delete"],
+    .keyboard-key[data-key="tab"],
+    .keyboard-key[data-key="enter"],
+    .keyboard-key[data-key="shift"],
+    .keyboard-key[data-key="capslock"] {
+        width: 200px;
+        background-color: var(--special-caps-background-color);
+        border: 1px solid var(--special-caps-border-color);
+    }
+
+    .keyboard-key[data-key="layout"]{
+        background-color: var(--special-caps-background-color);
+        border: 1px solid var(--special-caps-border-color);
+    }
+
+    #keyboard-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--keybord-background-color);;
+        box-shadow: 0px 5px 10px 0px #d1d1d2;
+        padding: 10px 0;
+        display: none;
+        z-index: 1000;
+    }
+
+    #content-wrapper {
+        padding-bottom: 80px;
+        overflow-y: scroll;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        margin-top: 10px;
+    }
+
+    #keyboard-input {
+        outline: none !important;
+        border-color: #007bff;
+        box-shadow: 0 0 10px #007bff;
+        position: relative;
+        width: calc(100% - 20px);
+        margin: 0 auto;
+        max-width: 600px;
+    }
+
+    #keyboard-input::after {
+        content: "|";
+        position: absolute;
+        animation: blink-caret 1s infinite;
+    }
+
+    @keyframes blink-caret {
+        50% {
+            opacity: 0;
+        }
+    }
+
+   

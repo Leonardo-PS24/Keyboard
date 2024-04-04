@@ -6,156 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tastiera Virtuale</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <style>
-        body {
-            background: rgba(255, 255, 255, 0.8);
-            margin: 0;
-            padding: 0;
-        }
-
-        #page-content {
-            position: relative;
-            z-index: 1;
-            padding-bottom: 100px;
-            margin: 30px;
-        }
-
-        #keyboard-container {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(248, 249, 250, 0.9);
-            border-bottom: 1px solid #ced4da;
-            z-index: 10000;
-            padding: 10px;
-            box-shadow: 0px 5px 10px 0px #888888;
-            margin: 30px;
-            font-size: 20px;
-            border-radius: 15px;
-        }
-
-        .keyboard-layout {
-            display: none;
-        }
-
-        .keyboard-row {
-            display: flex;
-            justify-content: center;
-            padding: 5px;
-        }
-
-        .keyboard-key {
-            width: 80px;
-            height: 80px;
-            margin: 2px;
-            text-align: center;
-            line-height: 80px;
-            cursor: pointer;
-            border: 1.5px solid lightgray;
-            border-radius: 10px;
-            display: inline-block;
-            font-size: 25px;
-        }
-
-        .uppercase-toggle,
-        .capslock-toggle,
-        .shift-toggle {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        #btnClose {
-            background-color: #ff0000;
-            margin-bottom: 5px;
-            border-radius: 10px;
-        }
-
-        .keyboard-key[data-key=" "] {
-            width: 50%;
-        }
-
-        .keyboard-key[data-key="layout"],
-        .keyboard-key[data-key="delete"],
-        .keyboard-key[data-key="tab"],
-        .keyboard-key[data-key="enter"],
-        .keyboard-key[data-key="shift"],
-        .keyboard-key[data-key="capslock"] {
-            width: 200px;
-        }
-
-        .keyboard-key[data-key="↑"],
-        .keyboard-key[data-key="↓"] {
-            height: 39px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin: 2px;
-        }
-
-        .keyboard-key[data-key="←"],
-        .keyboard-key[data-key="→"] {
-            height: 39px;
-            margin-top: 43px;
-            text-align: center;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-        }
-
-        .capslock-toggle {
-            background-color: rgba(248, 249, 250, 0.9);
-            color: black;
-        }
-
-        .shift-toggle {
-            background-color: rgba(248, 249, 250, 0.9);
-            color: black;
-        }
-
-        .capslock-toggle.active {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        .shift-toggle.active {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        #keyboard-input {
-            outline: none !important;
-            border-color: #007bff;
-            box-shadow: 0 0 10px #007bff;
-            position: relative;
-        }
-
-        #keyboard-input::after {
-            content: "|";
-            position: absolute;
-            animation: blink-caret 1s infinite;
-        }
-
-        .symbol-toggle.active{
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        @keyframes blink-caret {
-            50% {
-                opacity: 0;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
     <div class="container mt-5">
         <form>
             <div class="form-group">
@@ -163,288 +20,264 @@
                 <input type="text" class="form-control" id="input1">
             </div>
         </form>
-
         <form>
             <div class="form-group">
                 <label for="input2">Input 2:</label>
-                <input type="text" class="form-control" id="input2">
-            </div>
-        </form>
-
-        <form>
-            <div class="form-group">
-                <label for="input3">Input 3:</label>
-                <input type="number" class="form-control" id="input3">
+                <input type="number" class="form-control" id="input2">
             </div>
         </form>
     </div>
 
     <div id="keyboard-container">
-        <button class="btn btn-danger float-right" id="btnClose"><i class="fa-brands fa-xbox"></i></button>
-        <div id="input-name"></div>
-        <input type="text" id="keyboard-input" class="form-control mb-2" autofocus>
+        <div class="keyboard-layout">
+        </div>
+    </div>
 
-        <div class="keyboard-row">
-            <div class="keyboard-key" data-key="`">`</div>
-            <div class="keyboard-key" data-key="1">1</div>
-            <div class="keyboard-key" data-key="2">2</div>
-            <div class="keyboard-key" data-key="3">3</div>
-            <div class="keyboard-key" data-key="4">4</div>
-            <div class="keyboard-key" data-key="5">5</div>
-            <div class="keyboard-key" data-key="6">6</div>
-            <div class="keyboard-key" data-key="7">7</div>
-            <div class="keyboard-key" data-key="8">8</div>
-            <div class="keyboard-key" data-key="9">9</div>
-            <div class="keyboard-key" data-key="0">0</div>
-            <div class="keyboard-key" data-key="_">_</div>
-            <div class="keyboard-key" data-key="=">=</div>
-            <div class="keyboard-key" data-key="delete"><i class="fas fa-backspace"></i></div>
-        </div>
-        <div class="keyboard-row">
-            <div class="keyboard-key" data-key="tab"><b>tab</b></div>
-            <div class="keyboard-key" data-key="q">q</div>
-            <div class="keyboard-key" data-key="w">w</div>
-            <div class="keyboard-key" data-key="e">e</div>
-            <div class="keyboard-key" data-key="r">r</div>
-            <div class="keyboard-key" data-key="t">t</div>
-            <div class="keyboard-key" data-key="y">y</div>
-            <div class="keyboard-key" data-key="u">u</div>
-            <div class="keyboard-key" data-key="i">i</div>
-            <div class="keyboard-key" data-key="o">o</div>
-            <div class="keyboard-key" data-key="p">p</div>
-            <div class="keyboard-key" data-key="[">[</div>
-            <div class="keyboard-key" data-key="]">]</div>
-            <div class="keyboard-key" data-key="\">\</div>
-        </div>
-        <div class="keyboard-row">
-            <div class="keyboard-key capslock-toggle" data-key="capslock"><i class="fa-solid fa-arrow-down-up-lock"></i></div>
-            <div class="keyboard-key" data-key="a">a</div>
-            <div class="keyboard-key" data-key="s">s</div>
-            <div class="keyboard-key" data-key="d">d</div>
-            <div class="keyboard-key" data-key="f">f</div>
-            <div class="keyboard-key" data-key="g">g</div>
-            <div class="keyboard-key" data-key="h">h</div>
-            <div class="keyboard-key" data-key="j">j</div>
-            <div class="keyboard-key" data-key="k">k</div>
-            <div class="keyboard-key" data-key=";">;</div>
-            <div class="keyboard-key" data-key="'">'</div>
-            <div class="keyboard-key" data-key="enter"><i class="fa-solid fa-arrow-right-to-bracket"></i></div>
-        </div>
-        <div class="keyboard-row">
-            <div class="keyboard-key shift-toggle" data-key="shift"><i class="fa-solid fa-arrow-up-z-a"></i></div>
-            <div class="keyboard-key" data-key="?">?</div>
-            <div class="keyboard-key" data-key="z">z</div>
-            <div class="keyboard-key" data-key="x">x</div>
-            <div class="keyboard-key" data-key="c">c</div>
-            <div class="keyboard-key" data-key="v">v</div>
-            <div class="keyboard-key" data-key="b">b</div>
-            <div class="keyboard-key" data-key="n">n</div>
-            <div class="keyboard-key" data-key="m">m</div>
-            <div class="keyboard-key" data-key=",">,</div>
-            <div class="keyboard-key" data-key=".">.</div>
-            <div class="keyboard-key" data-key="/">/</div>
-            <div class="keyboard-key shift-toggle" data-key="shift"><i class="fa-solid fa-arrow-up-z-a"></i></div>
-        </div>
-        <div class="keyboard-row">
-            <div class="keyboard-key" data-key="layout"><b>US</b> <i class="fas fa-solid fa-globe"></i></div>
-            <div class="keyboard-key symbol-toggle" data-key="symbol"><b>alt</b></div>
-            <div class="keyboard-key" data-key=" "></div>
-            <div class="keyboard-key symbol-toggle" data-key="symbol"><b>alt</b></div>
-            <div class="keyboard-key" data-key="←"><i class="fas fa-arrow-left"></i></div>
-            <div>
-                <div class="keyboard-key" data-key="↑"><i class="fas fa-arrow-up"></i></div>
-                <div class="keyboard-key" data-key="↓"><i class="fas fa-arrow-down"></i></div>
+    <div class="modal fade" id="languageModal" tabindex="-1" role="dialog" aria-labelledby="languageModalLabel"
+        aria-hidden="true" style="z-index: 10001;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="languageModalLabel">Seleziona Lingua</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <li class="list-group-item language-option" data-value="us">US</li>
+                        <li class="list-group-item language-option" data-value="it">IT</li>
+                        <li class="list-group-item language-option" data-value="nl">NL</li>
+                    </ul>
+                </div>
             </div>
-            <div class="keyboard-key" data-key="→"><i class="fas fa-arrow-right"></i></div>
         </div>
-    </div> 
-        
-   <!-- <div id="keyboard-container">
-        <button class="btn btn-danger float-right" id="btnClose"><i class="fa-brands fa-xbox"></i></button>
-        <div id="input-name"></div>
-        <input type="text" id="keyboard-input" class="form-control mb-2" autofocus>
+    </div>
 
-        <div class="keyboard-row">
-            <div class="keyboard-key" data-key="7">7</div>
-            <div class="keyboard-key" data-key="8">8</div>
-            <div class="keyboard-key" data-key="9">9</div>
-            <div class="keyboard-key" data-key="-">-</div>
-        </div>
-        <div class="keyboard-row">
-            <div class="keyboard-key" data-key="4">7</div>
-            <div class="keyboard-key" data-key="5">5</div>
-            <div class="keyboard-key" data-key="6">6</div>
-            <div class="keyboard-key" data-key="+">+</div>
-        </div>
-        <div class="keyboard-row">
-            <div class="keyboard-key" data-key="1">1</div>
-            <div class="keyboard-key" data-key="2">2</div>
-            <div class="keyboard-key" data-key="3">3</div>
-            <div class="keyboard-key" data-key="delete"><i class="fas fa-backspace"></i></div>
-        </div>
-        <div class="keyboard-row">
-            <div class="keyboard-key" data-key="0">0</div>
-            <div class="keyboard-key" data-key="enter"><i class="fa-solid fa-arrow-right-to-bracket"></i></div>
-            <div class="keyboard-key" data-key="layout"><b>US</b> <i class="fas fa-solid fa-globe"></i></div>
-        </div>
-    </div> -->
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
             var currentInputName = "";
-            var isUppercase = false;
+            var currentLanguage = "us";
             var isCapsLock = false;
-            var shiftPressed = false;
-            var isSymbolMode = false;
-
-            var layouts = {
-                normal: {
-                    '`':'`','1': '1', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', '0': '0','_':'_','=':'=',
-                    'q': 'q', 'w': 'w', 'e': 'e', 'r': 'r', 't': 't', 'y': 'y', 'u': 'u', 'i': 'i', 'o': 'o', 'p': 'p','[':'[',']':']','':'',
-                    'a': 'a', 's': 's', 'd': 'd', 'f': 'f', 'g': 'g', 'h': 'h', 'j': 'j', 'k': 'k', ';': ';','': '',
-                    'z': 'z', 'x': 'x', 'c': 'c', 'v': 'v', 'b': 'b', 'n': 'n', 'm': 'm',',': ',','.': '.','/': '/',     
-                },
-                uppercase: {
-                    '`':'~','1': '!', '2': '@', '3': '#', '4': '$', '5': '%', '6': '^', '7': '&', '8': '*', '9': '(', '0': ')','_':'-','=':'+',
-                    'q': 'Q', 'w': 'W', 'e': 'E', 'r': 'R', 't': 'T', 'y': 'Y', 'u': 'U', 'i': 'I', 'o': 'O', 'p': 'P','[':'{',']':'}','':'|',
-                    'a': 'A', 's': 'S', 'd': 'D', 'f': 'F', 'g': 'G', 'h': 'H', 'j': 'J', 'k': 'K',';': ';','': '',
-                    'z': 'Z', 'x': 'X', 'c': 'C', 'v': 'V', 'b': 'B', 'n': 'N', 'm': 'M',',': '<','.': '>','/': '?',                 
-                },
-                alt: {
-                    'e': '€', 
-                }
-            };
-
-            $('input').click(function () {
-                currentInputName = $(this).attr('id');
-                $('#input-name').text(currentInputName);
-                $('#keyboard-container').show();
-                $('#keyboard-input').val($(this).val());
-                $('#keyboard-input').focus();
-            });
-
-            $('#btnClose').click(function () {
-                $('#keyboard-container').hide();
-            });
-
-            $('.keyboard-key[data-key="enter"]').click(function () {
-                var currentInput = $('#' + currentInputName);
-                currentInput.val($('#keyboard-input').val());
-                $('#keyboard-container').hide();
-            });
-
-            $('.keyboard-key').click(function () {
-                var currentInput = $('#keyboard-input');
-                var key = $(this).data('key');
-
-                if (key === 'shift') {
-                    isUppercase = !isUppercase;
-                    shiftPressed = true;
-                    updateKeyboardLayout();
-                } else if (key === 'capslock') {
-                    isCapsLock = !isCapsLock;
-                    isUppercase = isCapsLock; // Imposta maiuscole se Caps Lock è attivo
-                    updateKeyboardLayout();
-                } else if (key === 'symbol') {
-                    isSymbolMode = !isSymbolMode;
-                    updateKeyboardLayout();
-                } else if (key === 'delete') {
-                    var cursorPos = currentInput.prop('selectionStart');
-                    var textBefore = currentInput.val().substring(0, cursorPos - 1);
-                    var textAfter = currentInput.val().substring(cursorPos);
-                    currentInput.val(textBefore + textAfter);
-                    currentInput.prop('selectionStart', cursorPos - 1);
-                    currentInput.prop('selectionEnd', cursorPos - 1);
-                } else if (key === '←') {
-                    var cursorPos = currentInput.prop('selectionStart');
-                    currentInput.prop('selectionStart', cursorPos - 1);
-                    currentInput.prop('selectionEnd', cursorPos - 1);
-                } else if (key === '→') {
-                    var cursorPos = currentInput.prop('selectionStart');
-                    currentInput.prop('selectionStart', cursorPos + 1);
-                    currentInput.prop('selectionEnd', cursorPos + 1);
-                } else if (key === '↑') {
-                    $('#' + currentInputName).prev('form').find('input').focus();
-                } else if (key === '↓') {
-                    $('#' + currentInputName).next('form').find('input').focus();
-                } else if (key === ' ') {
-                    var cursorPos = currentInput.prop('selectionStart');
-                    var textBefore = currentInput.val().substring(0, cursorPos);
-                    var textAfter = currentInput.val().substring(cursorPos);
-                    currentInput.val(textBefore + ' ' + textAfter);
-                    currentInput.prop('selectionStart', cursorPos + 1);
-                    currentInput.prop('selectionEnd', cursorPos + 1);
-                } else {
-                    var cursorPos = currentInput.prop('selectionStart');
-                    var textBefore = currentInput.val().substring(0, cursorPos);
-                    var textAfter = currentInput.val().substring(cursorPos);
-                    currentInput.val(textBefore + layouts[getCurrentLayout()][key] + textAfter);
-                    currentInput.prop('selectionStart', cursorPos + 1);
-                    currentInput.prop('selectionEnd', cursorPos + 1);
-
-                    if (shiftPressed) {
-                        isUppercase = false;
-                        shiftPressed = false;
-                        updateKeyboardLayout();
-                    }
-                }
-                // Mantieni il focus sull'input anche durante la digitazione
-                currentInput.focus();
-            });
-
-            function getCurrentLayout() {
-                if (isSymbolMode) {
-                    return 'alt';
-                } else if (isUppercase || isCapsLock) {
-                    return 'uppercase';
-                } else {
-                    return 'normal';
-                }
-            }
+            var isShiftEnabled = false;
+            var layouts;
 
             function updateKeyboardLayout() {
-                var keys = $('.keyboard-key[data-key]');
-                keys.each(function () {
-                    var key = $(this).data('key');
-                    $(this).text(layouts[getCurrentLayout()][key]);
+                if (!layouts || !layouts[currentLanguage]) {
+                    console.error("Layout non definito o non trovato per la lingua corrente");
+                    return;
+                }
+                var layout = layouts[currentLanguage];
+                var rows = isShiftEnabled || isCapsLock ? layout.uppercase : layout.normal;
+                var $keyboardContainer = $('#keyboard-container');
+                $keyboardContainer.find('.keyboard-row').remove();
+
+                rows.forEach(function (row) {
+                    var $keyboardRow = $('<div class="keyboard-row"></div>');
+
+                    row.forEach(function (key) {
+                        var keyElement;
+                        if (key === 'shift') {
+                            keyElement = '<div class="keyboard-key shift-toggle' + (isShiftEnabled ? ' active' : '') + '" data-key="shift"><i class="fa-solid fa-up-long"></i></div>';
+                        } else if (key === 'capslock') {
+                            keyElement = '<div class="keyboard-key capslock-toggle' + (isCapsLock ? ' active' : '') + '" data-key="capslock"> <i class="fa-solid fa-a"></i> <i class="fa-solid fa-lock"></i> </div>';
+                        } else if (key === 'lang') {
+                            keyElement = '<div class="keyboard-key" data-key="layout">' + '<i class="fa-solid fa-language"></i>' + '</div>';
+                        } else if (key === 'delete'){
+                            keyElement = '<div class="keyboard-key" data-key="delete"> <i class="fa-solid fa-delete-left"></i> </div>';
+                        }else if (key === 'space') {
+                            keyElement = '<div class="keyboard-key" data-key=" "> </div>';
+                        } else if(key === 'set'){
+                            keyElement = '<div class="keyboard-key" data-key=""> <i class="fa-solid fa-gear"></i> </div>';
+                        }else if(key === 'close-keyboard'){
+                            keyElement = '<div class="keyboard-key" data-key="close-keyboard"> <i class="fa-solid fa-keyboard"></i> <i class="fa-solid fa-chevron-down"></i> </div>';
+                        }else if(key === '123'){
+                            keyElement = '<div class="keyboard-key" data-key=""> <i class="fa-solid fa-icons"></i> </div>';
+                        }else {
+                            keyElement = '<div class="keyboard-key" data-key="' + key + '">' + key + '</div>';
+                        }
+                        $keyboardRow.append(keyElement);
+                    });
+
+                    $keyboardContainer.append($keyboardRow);
                 });
-
-                updateCapsLock();
-                updateShift();
-                updateSymbolToggle();
             }
 
-            function updateCapsLock() {
-                var capsLockToggle = $('.keyboard-key[data-key="capslock"]');
-                capsLockToggle.toggleClass('active', isCapsLock);
+
+            // Carica i layout delle tastiere dal file JSON
+            $.getJSON("keyboard_layouts.json")
+            .done(function(data) {
+                console.log("Dati caricati correttamente:", data);
+                layouts = data;
+                updateKeyboardLayout();
+            })
+            .fail(function(jqxhr, textStatus, error) {
+                var err = textStatus + ", " + error;
+                console.error("Errore durante il caricamento dei dati:", err);
+            });
+
+
+            function toggleCapsLock() {
+                isCapsLock = !isCapsLock;
+                updateKeyboardLayout();
             }
 
-            function updateShift() {
-                var shiftToggle = $('.keyboard-key[data-key="shift"]');
-                shiftToggle.toggleClass('active', shiftPressed);
+            function toggleShift() {
+                isShiftEnabled = !isShiftEnabled;
+                updateKeyboardLayout();
             }
 
-            function updateSymbolToggle() {
-                var symbolToggle = $('.keyboard-key[data-key="symbol"]');
-                symbolToggle.toggleClass('active', isSymbolMode);
-            }
+            $('input').focus(function () {
+                currentInputName = $(this).attr('id');
+                updateKeyboardLayout(); // Aggiorna il layout della tastiera al layout normale
+                $('#keyboard-container').show();
+            });
 
-            $(document).on('keydown', function (event) {
-                if (event.key === 'Enter') {
-                    var currentInput = $('#' + currentInputName);
-                    currentInput.val($('#keyboard-input').val());
+            // Listener per il tasto Caps Lock
+            $(document).on('mousedown', '.keyboard-key[data-key="capslock"]', function (event) {
+                event.preventDefault();
+                toggleCapsLock();
+                isShiftEnabled = false; // Disabilita lo Shift quando viene attivato il Caps Lock
+                updateKeyboardLayout();
+            });
+
+            // Listener per il tasto Shift
+            $(document).on('mousedown', '.keyboard-key[data-key="shift"]', function (event) {
+                event.preventDefault();
+                toggleShift();
+                isCapsLock = false; // Disabilita il Caps Lock quando viene attivato lo Shift
+                updateKeyboardLayout();
+            });
+
+            $('input').blur(function () {
+                $('#keyboard-container').hide();
+                isCapsLock = false; // Assicura che il Caps Lock sia disattivato quando la tastiera viene chiusa
+                isShiftEnabled = false; // Assicura che lo Shift sia disattivato quando la tastiera viene chiusa
+                updateKeyboardLayout(); // Aggiorna il layout della tastiera al layout normale quando viene chiusa o cambiato input
+            });
+
+
+            // Listener per i tasti sulla tastiera
+            $(document).on('mousedown', '.keyboard-key:not([data-key="shift"])', function (event) {
+                event.preventDefault();
+
+                // Disattiva la modalità Shift
+                isShiftEnabled = false;
+                updateKeyboardLayout();
+
+                var $this = $(this);
+                var key = $this.data('key');
+
+                var inputField = $('#' + currentInputName);
+                var currentValue = inputField.val();
+                var cursorPosition = inputField.prop('selectionStart');
+
+            });
+
+            $(document).on('mousedown', '.keyboard-key[data-key="123"]', function (event) {
+            event.preventDefault();
+            if (currentLanguage === 'us' && layouts['us'].symbol) {
+                currentLayout = 'symbol'; // Imposta il layout sui simboli solo se disponibile per la lingua US
+            } else {
+                currentLayout = 'normal'; // Altrimenti, torna al layout normale
+            }
+            updateKeyboardLayout();
+        });
+
+        $(document).on('mousedown', '.keyboard-key[data-key="ABC"]', function (event) {
+            event.preventDefault();
+            currentLayout = 'normal'; // Torna al layout normale quando viene premuto il tasto "ABC"
+            updateKeyboardLayout();
+        });
+
+
+    
+            $('input').focus(function () {
+                currentInputName = $(this).attr('id');
+                $('#keyboard-container').show();
+            });
+
+            $('input').blur(function () {
+                $('#keyboard-container').hide();
+            });
+
+            $(document).on('mousedown', '.keyboard-key', function (event) {
+                event.preventDefault();
+
+                var $this = $(this);
+                var key = $this.data('key');
+
+                var inputField = $('#' + currentInputName);
+                var currentValue = inputField.val();
+                var cursorPosition = inputField.prop('selectionStart');
+
+                // Controlla se il tasto premuto è "shift" o "capslock" e non aggiungerlo all'input
+                if (key === 'shift' || key === 'capslock') {
+                    return;
+                }
+
+                if (key === 'delete') {
+                    inputField.val(currentValue.slice(0, cursorPosition - 1) + currentValue.slice(cursorPosition));
+                } else if (key === 'space') {
+                    inputField.val(currentValue.slice(0, cursorPosition) + ' ' + currentValue.slice(cursorPosition));
+                } else if (key === 'enter') {
                     $('#keyboard-container').hide();
+                } else if (key === 'tab') {
+                    inputField.val(currentValue.slice(0, cursorPosition) + '\t' + currentValue.slice(cursorPosition));
+                } else if (key === 'layout') {
+                    $('#languageModal').modal('show');
+                } else if (key === 'close-keyboard') {
+                    $('#' + currentInputName).blur();
+                    $('#keyboard-container').hide();
+                } else if (key === '123') {
+                    currentLanguage = 'symbol';
+                    updateKeyboardLayout();
+                } else {
+                    var newValue = currentValue.slice(0, cursorPosition) + key + currentValue.slice(cursorPosition);
+                    inputField.val(newValue);
+                }
+
+                inputField.focus();
+            });
+
+
+            $(document).on('click', '.keyboard-key[data-key="layout"]', function (event) {
+                event.stopPropagation();
+                $('#languageModal').modal('show');
+            });
+
+            $(document).on('mousedown', function (event) {
+                var keyboardContainer = $('#keyboard-container');
+                if (!keyboardContainer.is(event.target) && keyboardContainer.has(event.target).length === 0) {
+                    if (!$(event.target).hasClass('keyboard-key')) {
+                        $('#' + currentInputName).blur();
+                        keyboardContainer.hide();
+                    }
                 }
             });
 
-            $('#keyboard-input').on('input', function () {
-                // Mantieni il focus sull'input anche durante la digitazione
-                $(this).focus();
+
+            $(document).on('mousedown', '.keyboard-key[data-key="close-keyboard"]', function (event) {
+                event.stopPropagation();
+                $('#' + currentInputName).blur();
+                $('#keyboard-container').hide();
+            });
+
+
+            $(document).on('click', '.language-option', function () {
+                var selectedLanguage = $(this).data('value');
+                if (selectedLanguage !== currentLanguage) {
+                    currentLanguage = selectedLanguage;
+                    updateKeyboardLayout();
+                }
+                $('#languageModal').modal('hide');
             });
 
         });
     </script>
-
 </body>
 
 </html>
