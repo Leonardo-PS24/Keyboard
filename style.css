@@ -51,8 +51,12 @@
         border: 1px solid var(--special-caps-border-color);
     }
 
-    .keyboard-key[data-key="layout"]{
-        background-color: var(--special-caps-background-color);
+
+    .keyboard-key[data-key="symbol"],
+    .keyboard-key[data-key="ABC"],
+    .keyboard-key[data-key="setting"],
+    .keyboard-key[data-key="layout"] {
+        background-color: var(--special-caps-background-color); 
         border: 1px solid var(--special-caps-border-color);
     }
 
@@ -102,5 +106,9 @@
             opacity: 0;
         }
     }
+
+   .modal{
+    z-index: 10001;
+   }
 
    
