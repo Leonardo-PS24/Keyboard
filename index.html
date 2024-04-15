@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tastiera Virtuale</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -23,6 +23,14 @@
                 <label for="input2">Input 2:</label>
                 <input type="number" class="form-control" id="input2">
             </div>
+            <div class="form-group">
+                <label for="input3">Input 3:</label>
+                <input type="text" class="form-control" id="input3">
+            </div>
+            <div class="form-group">
+                <label for="input4">Input 4:</label>
+                <input type="number" class="form-control" id="input4">
+            </div>
         </form>
     </div>
 
@@ -31,6 +39,25 @@
         </div>
     </div>
 
+    <!-- Modal per le impostazioni -->
+    <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="settingsModalLabel">Impostazioni</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="color">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal per la selezione della lingua -->
     <div class="modal fade" id="languageModal" tabindex="-1" role="dialog" aria-labelledby="languageModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -54,273 +81,8 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            var currentInputName = "";
-            var currentLanguage = "us";
-            var currentLayout = "normal";
-            var isCapsLock = false;
-            var isShiftEnabled = false;
-            var layouts;
+    <script type="module" src="scripts.js"></script>
 
-            function updateKeyboardLayout() {
-                if (!layouts || !layouts[currentLanguage]) {
-                    console.error("Layout non definito o non trovato per la lingua corrente");
-                    return;
-                }
-                var layout = layouts[currentLanguage];
-
-                console.log(currentLanguage);
-                console.log(layout);
-
-                var rows = isShiftEnabled || isCapsLock ? layout.uppercase : layout.normal;
-
-                if (currentLayout === 'symbol') {
-                    rows = layout.symbol;
-                }
-
-                var $keyboardContainer = $('#keyboard-container');
-                $keyboardContainer.empty();
-
-                rows.forEach(function (row) {
-                    var $keyboardRow = $('<div class="keyboard-row"></div>');
-
-                    row.forEach(function (key) {
-                        var keyElement;
-                        switch (key) {
-                            case 'shift':
-                                keyElement = '<div class="keyboard-key shift-toggle' + (isShiftEnabled ? ' active' : '') + '" data-key="shift"><i class="fa-solid fa-up-long"></i></div>';
-                                break;
-                            case 'capslock':
-                                keyElement = '<div class="keyboard-key capslock-toggle' + (isCapsLock ? ' active' : '') + '" data-key="capslock"> <i class="fa-solid fa-a"></i> <i class="fa-solid fa-lock"></i> </div>';
-                                break;
-                            case 'lang':
-                                keyElement = '<div class="keyboard-key" data-key="layout">' + '<i class="fa-solid fa-language"></i>' + '</div>';
-                                break;
-                            case 'delete':
-                                keyElement = '<div class="keyboard-key" data-key="delete"> <i class="fa-solid fa-delete-left"></i> </div>';
-                                break;
-                            case 'space':
-                                keyElement = '<div class="keyboard-key" data-key=" "> </div>';
-                                break;
-                            case 'set':
-                                keyElement = '<div class="keyboard-key" data-key="setting"> <i class="fa-solid fa-gear"></i> </div>';
-                                break;
-                            case 'close-keyboard':
-                                keyElement = '<div class="keyboard-key" data-key="close-keyboard"> <i class="fa-solid fa-keyboard"></i> <i class="fa-solid fa-chevron-down"></i> </div>';
-                                break;
-                            case 'symbol':
-                                keyElement = '<div class="keyboard-key" data-key="symbol"> <b>123</b> </div>';
-                                break;
-                            case 'ABC':
-                                keyElement = '<div class="keyboard-key" data-key="ABC"> <b>ABC</b> </div>';
-                                break;
-                            default:
-                                keyElement = '<div class="keyboard-key" data-keyval="' + key + '">' + key + '</div>';
-                        }
-
-                        $keyboardRow.append(keyElement);
-                    });
-
-                    $keyboardContainer.append($keyboardRow);
-                });
-            }
-
-
-            // Carica i layout delle tastiere dal file JSON
-            $.getJSON("keyboard_layouts.json")
-                .done(function (data) {
-                    console.log("Dati caricati correttamente:", data);
-                    layouts = data;
-                    updateKeyboardLayout();
-                })
-                .fail(function (jqxhr, textStatus, error) {
-                    var err = textStatus + ", " + error;
-                    console.error("Errore durante il caricamento dei dati:", err);
-                });
-
-
-            function toggleCapsLock() {
-                isCapsLock = !isCapsLock;
-                updateKeyboardLayout();
-            }
-
-            function toggleShift() {
-                isShiftEnabled = !isShiftEnabled;
-                updateKeyboardLayout();
-            }
-
-            $('input').focus(function () {
-                currentInputName = $(this).attr('id');
-                updateKeyboardLayout(); // Aggiorna il layout della tastiera al layout normale
-                $('#keyboard-container').show();
-            });
-
-            // Listener per il tasto Caps Lock
-            $(document).on('mousedown', '.keyboard-key[data-key="capslock"]', function (event) {
-                event.preventDefault();
-                toggleCapsLock();
-                isShiftEnabled = false; // Disabilita lo Shift quando viene attivato il Caps Lock
-                updateKeyboardLayout();
-            });
-
-            // Listener per il tasto Shift
-            $(document).on('mousedown', '.keyboard-key[data-key="shift"]', function (event) {
-                event.preventDefault();
-                toggleShift();
-                isCapsLock = false; // Disabilita il Caps Lock quando viene attivato lo Shift
-                updateKeyboardLayout();
-            });
-
-            $('input').blur(function () {
-               //  $('#keyboard-container').hide();
-                isCapsLock = false; // Assicura che il Caps Lock sia disattivato quando la tastiera viene chiusa
-                isShiftEnabled = false; // Assicura che lo Shift sia disattivato quando la tastiera viene chiusa
-                updateKeyboardLayout(); // Aggiorna il layout della tastiera al layout normale quando viene chiusa o cambiato input
-            });
-
-
-            // Listener per i tasti sulla tastiera
-            // $(document).on('mousedown', '.keyboard-key:not([data-key="shift"])', function (event) {
-            //     event.preventDefault();
-
-            //     // Disattiva la modalità Shift
-            //     // isShiftEnabled = false;
-            //     // updateKeyboardLayout();
-
-            //     var $this = $(this);
-            //     var key = $this.data('key');
-
-            //     var inputField = $('#' + currentInputName);
-            //     var currentValue = inputField.val();
-            //     var cursorPosition = inputField.prop('selectionStart');
-
-            // });
-
-            $(document).on('mousedown', '.keyboard-key[data-key="symbol"]', function (event) {
-                event.preventDefault();
-                if (currentLayout === 'normal') {
-                    currentLayout = 'symbol';
-                } else if (currentLayout === 'symbol') {
-                    currentLayout = 'normal';
-                }
-
-                updateKeyboardLayout();
-            });
-
-            $(document).on('mousedown', '.keyboard-key[data-key="ABC"]', function (event) {
-                event.preventDefault();
-                currentLayout = 'normal'; // Torna al layout normale quando viene premuto il tasto "ABC"
-                updateKeyboardLayout();
-            });
-
-
-
-            $('input').focus(function () {
-                currentInputName = $(this).attr('id');
-                $('#keyboard-container').show();
-            });
-
-
-
-            // $(document).on('mousedown', '.keyboard-key', function (event) {
-            //     event.preventDefault();
-
-            //     var $this = $(this);
-            //     var key = $this.data('key');
-
-            //     var inputField = $('#' + currentInputName);
-            //     var currentValue = inputField.val();
-            //     var cursorPosition = inputField.prop('selectionStart');
-
-            //     // Temporarily treat number input as text to prevent formatting issues
-            //     // if (inputField.attr('type') === 'number') {
-            //     //     inputField.attr('type', 'text');
-            //     // }
-
-            //     // Controlla se il tasto premuto è "shift" o "capslock" e non aggiungerlo all'input
-            //     if (key === 'shift' || key === 'capslock') {
-            //         return;
-            //     }
-            //     if (key === 'symbol' || key === 'ABC') {
-            //         return;
-            //     }
-            //     if (key === 'delete') {
-            //         inputField.val(currentValue.slice(0, cursorPosition - 1) + currentValue.slice(cursorPosition));
-            //     } else if (key === 'space') {
-            //         inputField.val(currentValue.slice(0, cursorPosition) + ' ' + currentValue.slice(cursorPosition));
-            //     } else if (key === 'enter') {
-            //         //  $('#keyboard-container').hide();
-            //     } else if (key === 'tab') {
-            //         inputField.val(currentValue.slice(0, cursorPosition) + '\t' + currentValue.slice(cursorPosition));
-            //     } else if (key === 'layout') {
-            //         $('#languageModal').modal('show');
-            //     } else if (key === 'close-keyboard') {
-            //         $('#' + currentInputName).blur();
-            //         $('#keyboard-container').hide();
-            //     } else {
-            //         // var newValue = currentValue.slice(0, cursorPosition) + key + currentValue.slice(cursorPosition);
-            //         // inputField.val(newValue);
-            //     }
-
-            //     // Restore input type if it was a number input, after a delay to handle focus issues
-            //     // if (inputField.data('wasNumber')) {
-            //     //     setTimeout(function () {
-            //     //         inputField.attr('type', 'number');
-            //     //     }, 100);
-            //     // }
-
-            //     inputField.focus();
-            // });
-
-
-            $(document).on('click', '.keyboard-key[data-keyval]', function (event) {
-                // Get the 'data-key' value of the clicked div
-                var keyValue = $(this).attr('data-keyval');
-
-                console.log(keyValue);
-
-                // Find the input field of type 'number' and append the data-key value
-                $('#' + currentInputName).val(function (index, val) {
-                    return val + keyValue;
-                });
-            });
-
-            $(document).on('click', '.keyboard-key[data-key="layout"]', function (event) {
-                event.stopPropagation();
-                $('#languageModal').modal('show');
-            });
-
-            // $(document).on('mousedown', function (event) {
-            //     var keyboardContainer = $('#keyboard-container');
-            //     if (!keyboardContainer.is(event.target) && keyboardContainer.has(event.target).length === 0) {
-            //         if (!$(event.target).hasClass('keyboard-key')) {
-            //             $('#' + currentInputName).blur();
-            //             keyboardContainer.hide();
-            //         }
-            //     }
-            // });
-
-
-            $(document).on('mousedown', '.keyboard-key[data-key="close-keyboard"]', function (event) {
-                event.stopPropagation();
-                $('#' + currentInputName).blur();
-                $('#keyboard-container').hide();
-            });
-
-
-            $(document).on('click', '.language-option', function () {
-                var selectedLanguage = $(this).data('value');
-                if (selectedLanguage !== currentLanguage) {
-                    currentLanguage = selectedLanguage;
-                    updateKeyboardLayout();
-                }
-                $('#languageModal').modal('hide');
-            });
-
-        });
-    </script>
 </body>
 
 </html>

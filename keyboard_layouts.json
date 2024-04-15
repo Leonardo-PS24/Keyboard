@@ -17,59 +17,68 @@
         ["capslock", "@", "#", "$", "&", "*", "(", ")", "'", "\"", "enter"],
         ["shift", "!", "/", "^", "%", "=", "-", "_", "shift"],
         ["ABC", "set", "lang", "space", "ABC", "close-keyboard"]
+      ],
+      "numeric": [
+        ["7", "8", "9", "delete"],
+        ["4", "5", "6", "enter"],
+        ["1", "2", "3"],
+        ["0", "close-keyboard"]
       ]
     },
+
     "it": {
       "normal": [
-        ["\\", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "'", "ì", "delete"],
-        ["tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "è", "+", "enter"],
-        ["capslock", "a", "s", "d", "f", "g", "h", "j", "k", "l", "ò", "à", "ù"],
-        ["shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "-", "shift"],
-        ["lang", "space", "close-keyboard"]
+        ["tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "delete"],
+        ["capslock", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter"],
+        ["shift", "z", "x", "c", "v", "b", "n", "m", "shift"],
+        ["symbol", "set", "lang", "space", "symbol", "close-keyboard"]
       ],
       "uppercase": [
-        ["|", "!", "\"", "£", "$", "%", "&", "/", "(", ")", "=", "?", "^", "delete"],
-        ["tab", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "é", "*", "enter"],
-        ["capslock", "A", "S", "D", "F", "G", "H", "J", "K", "L", "ç", "°", "§"],
-        ["shift", "Z", "X", "C", "V", "B", "N", "M", ";", ":", "_", "shift"],
-        ["lang", "space", "close-keyboard"]
+        ["tab", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "delete"],
+        ["capslock", "A", "S", "D", "F", "G", "H", "J", "K", "L", "enter"],
+        ["shift", "Z", "X", "C", "V", "B", "N", "M", "shift"],
+        ["symbol", "set", "lang", "space", "symbol", "close-keyboard"]
       ],
       "symbol": [
         ["tab", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "delete"],
         ["capslock", "@", "#", "$", "&", "*", "(", ")", "'", "\"", "enter"],
         ["shift", "!", "/", "^", "%", "=", "-", "_", "shift"],
-        ["ABC", "lang", "space", "ABC", "close-keyboard"]
+        ["ABC", "set", "lang", "space", "ABC", "close-keyboard"]
+      ],
+      "numeric": [
+        ["7", "8", "9", "delete"],
+        ["4", "5", "6", "enter"],
+        ["1", "2", "3"],
+        ["0", "close-keyboard"]
       ]
     },
+
     "nl": {
       "normal": [
-        ["§", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "'", "~", "delete"],
-        ["tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "enter"],
-        ["capslock", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "\\"],
-        ["shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "shift"],
-        ["lang", "space", "close-keyboard"]
+        ["tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "delete"],
+        ["capslock", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter"],
+        ["shift", "z", "x", "c", "v", "b", "n", "m", "shift"],
+        ["symbol", "set", "lang", "space", "symbol", "close-keyboard"]
       ],
       "uppercase": [
-        ["!", "\"", "#", "$", "%", "&", "/", "(", ")", "=", "?", "*", "^", "delete"],
-        ["tab", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "{", "}", "enter"],
-        ["capslock", "A", "S", "D", "F", "G", "H", "J", "K", "L", ":", "|"],
-        ["shift", "Z", "X", "C", "V", "B", "N", "M", ";", ":", "_", "^", "shift"],
-        ["lang", "space", "close-keyboard"]
+        ["tab", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "delete"],
+        ["capslock", "A", "S", "D", "F", "G", "H", "J", "K", "L", "enter"],
+        ["shift", "Z", "X", "C", "V", "B", "N", "M", "shift"],
+        ["symbol", "set", "lang", "space", "symbol", "close-keyboard"]
       ],
       "symbol": [
         ["tab", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "delete"],
         ["capslock", "@", "#", "$", "&", "*", "(", ")", "'", "\"", "enter"],
         ["shift", "!", "/", "^", "%", "=", "-", "_", "shift"],
-        ["ABC", "lang", "space", "ABC", "close-keyboard"]
-      ]
-    },
-    "number": {
-      "normal": [
-        ["7", "8", "9"],
-        ["4", "5", "6"],
+        ["ABC", "set", "lang", "space", "ABC", "close-keyboard"]
+      ],
+      "numeric": [
+        ["7", "8", "9", "delete"],
+        ["4", "5", "6", "enter"],
         ["1", "2", "3"],
-        ["0", "enter", "delete"]
+        ["0", "close-keyboard"]
       ]
     }
+   
   }
   
