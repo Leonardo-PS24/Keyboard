@@ -71,7 +71,7 @@ $(document).ready(function () {
                         keyElement = '<div class="keyboard-key" data-key="setting"> <i class="fa-solid fa-gear"></i> </div>';
                         break;
                     case 'close-keyboard':
-                        keyElement = '<div class="keyboard-key" data-key="close-keyboard"> <i class="fa-solid fa-keyboard"></i> <i class="fa-solid fa-chevron-down"></i> </div>';
+                        keyElement = '<div class="keyboard-key" data-key="close-keyboard"> <div class="keyboard-key" data-key="close-keyboard"> <div class="icon-container"> <i class="fa-solid fa-keyboard"></i> </div> <div class="icon-container"> <i class="fa-solid fa-chevron-down"></i> </div> </div> </div>';
                         break;
                     case 'symbol':
                         keyElement = '<div class="keyboard-key" data-key="symbol"> <b>123</b> </div>';

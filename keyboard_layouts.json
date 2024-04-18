@@ -19,10 +19,10 @@
         ["ABC", "set", "lang", "space", "ABC", "close-keyboard"]
       ],
       "numeric": [
-        ["7", "8", "9", "delete"],
-        ["4", "5", "6", "enter"],
+        ["7", "8", "9"],
+        ["4", "5", "6"],
         ["1", "2", "3"],
-        ["0", "close-keyboard"]
+        ["0", "delete", "close-keyboard"]
       ]
     },
 
