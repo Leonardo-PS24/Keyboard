@@ -38,6 +38,7 @@
         width: 430px;
     }
 
+    
     .keyboard-key[data-key="delete"],
     .keyboard-key[data-key="tab"],
     .keyboard-key[data-key="enter"],
@@ -63,10 +64,12 @@
         justify-content: center;
         align-items: center;
         border: none;
+        padding: none;
+        margin: none;
     }
     
     
-    
+    .keyboard-key[data-key="numeric"],
     .keyboard-key[data-key="symbol"],
     .keyboard-key[data-key="ABC"],
     .keyboard-key[data-key="setting"],

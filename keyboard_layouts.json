@@ -4,25 +4,25 @@
         ["tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "delete"],
         ["capslock", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter"],
         ["shift", "z", "x", "c", "v", "b", "n", "m", "shift"],
-        ["symbol", "set", "lang", "space", "symbol", "close-keyboard"]
+        ["set", "lang", "numeric", "space", "numeric", "close-keyboard"]
       ],
       "uppercase": [
         ["tab", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "delete"],
         ["capslock", "A", "S", "D", "F", "G", "H", "J", "K", "L", "enter"],
         ["shift", "Z", "X", "C", "V", "B", "N", "M", "shift"],
-        ["symbol", "set", "lang", "space", "symbol", "close-keyboard"]
+        ["set", "lang", "numeric", "space", "numeric", "close-keyboard"]
+      ],
+      "numeric": [
+        ["tab", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "delete"],
+        ["capslock", "@", "#", "$", "&", "*", "(", ")", "'", "\"", "enter"],
+        ["symbol", "!", "/", "^", "%", "=", "-", "_", "shift"],
+        ["set", "lang", "ABC", "space", "ABC", "close-keyboard"]
       ],
       "symbol": [
         ["tab", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "delete"],
-        ["capslock", "@", "#", "$", "&", "*", "(", ")", "'", "\"", "enter"],
-        ["shift", "!", "/", "^", "%", "=", "-", "_", "shift"],
-        ["ABC", "set", "lang", "space", "ABC", "close-keyboard"]
-      ],
-      "numeric": [
-        ["7", "8", "9"],
-        ["4", "5", "6"],
-        ["1", "2", "3"],
-        ["0", "delete", "close-keyboard"]
+        ["capslock", "\\", "#", "|", "'", "*", "{", "}", "'", "\"", "enter"],
+        ["numeric", "!", "/", "^", "%", "=", "-", "_", "shift"],
+        ["set", "lang", "ABC", "space", "ABC", "close-keyboard"]
       ]
     },
 
@@ -31,25 +31,25 @@
         ["tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "delete"],
         ["capslock", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter"],
         ["shift", "z", "x", "c", "v", "b", "n", "m", "shift"],
-        ["symbol", "set", "lang", "space", "symbol", "close-keyboard"]
+        ["set", "lang", "numeric", "space", "numeric", "close-keyboard"]
       ],
       "uppercase": [
         ["tab", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "delete"],
         ["capslock", "A", "S", "D", "F", "G", "H", "J", "K", "L", "enter"],
         ["shift", "Z", "X", "C", "V", "B", "N", "M", "shift"],
-        ["symbol", "set", "lang", "space", "symbol", "close-keyboard"]
+        ["set", "lang", "numeric", "space", "numeric", "close-keyboard"]
+      ],
+      "numeric": [
+        ["tab", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "delete"],
+        ["capslock", "@", "#", "$", "&", "*", "(", ")", "'", "\"", "enter"],
+        ["symbol", "!", "/", "^", "%", "=", "-", "_", "shift"],
+        ["set", "lang", "ABC", "space", "ABC", "close-keyboard"]
       ],
       "symbol": [
         ["tab", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "delete"],
-        ["capslock", "@", "#", "$", "&", "*", "(", ")", "'", "\"", "enter"],
-        ["shift", "!", "/", "^", "%", "=", "-", "_", "shift"],
-        ["ABC", "set", "lang", "space", "ABC", "close-keyboard"]
-      ],
-      "numeric": [
-        ["7", "8", "9", "delete"],
-        ["4", "5", "6", "enter"],
-        ["1", "2", "3"],
-        ["0", "close-keyboard"]
+        ["capslock", "\\", "#", "|", "'", "*", "{", "}", "'", "\"", "enter"],
+        ["numeric", "!", "/", "^", "%", "=", "-", "_", "shift"],
+        ["set", "lang", "ABC", "space", "ABC", "close-keyboard"]
       ]
     },
 
@@ -58,25 +58,25 @@
         ["tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "delete"],
         ["capslock", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter"],
         ["shift", "z", "x", "c", "v", "b", "n", "m", "shift"],
-        ["symbol", "set", "lang", "space", "symbol", "close-keyboard"]
+        ["set", "lang", "numeric", "space", "numeric", "close-keyboard"]
       ],
       "uppercase": [
         ["tab", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "delete"],
         ["capslock", "A", "S", "D", "F", "G", "H", "J", "K", "L", "enter"],
         ["shift", "Z", "X", "C", "V", "B", "N", "M", "shift"],
-        ["symbol", "set", "lang", "space", "symbol", "close-keyboard"]
+        ["set", "lang", "numeric", "space", "numeric", "close-keyboard"]
+      ],
+      "numeric": [
+        ["tab", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "delete"],
+        ["capslock", "@", "#", "$", "&", "*", "(", ")", "'", "\"", "enter"],
+        ["symbol", "!", "/", "^", "%", "=", "-", "_", "shift"],
+        ["set", "lang", "ABC", "space", "ABC", "close-keyboard"]
       ],
       "symbol": [
         ["tab", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "delete"],
-        ["capslock", "@", "#", "$", "&", "*", "(", ")", "'", "\"", "enter"],
-        ["shift", "!", "/", "^", "%", "=", "-", "_", "shift"],
-        ["ABC", "set", "lang", "space", "ABC", "close-keyboard"]
-      ],
-      "numeric": [
-        ["7", "8", "9", "delete"],
-        ["4", "5", "6", "enter"],
-        ["1", "2", "3"],
-        ["0", "close-keyboard"]
+        ["capslock", "\\", "#", "|", "'", "*", "{", "}", "'", "\"", "enter"],
+        ["numeric", "!", "/", "^", "%", "=", "-", "_", "shift"],
+        ["set", "lang", "ABC", "space", "ABC", "close-keyboard"]
       ]
     },
     "ab": {
@@ -84,25 +84,25 @@
         ["tab", "ض", "ص", "ث", "ق", "ف", "غ", "ع", "ه", "خ", "ح", "ج", "delete"],
         ["capslock", "ش", "س", "ي", "ب", "ل", "ا", "ت", "ن", "م", "ك", "enter"],
         ["shift", "ئ", "ء", "ؤ", "ر", "لا", "ى", "ة", "و", "ز", "ظ", "shift"],
-        ["symbol", "set", "lang", "space", "symbol", "close-keyboard"]
+        ["set", "lang", "numeric", "space", "numeric", "close-keyboard"]
       ],
       "uppercase": [
         ["tab", "َ", "ً", "ُ", "ٌ", "ِ", "ٍ", "ّ", "ْ", "]", "[", "}", "delete"],
         ["capslock", "َّ", "ُّ", "ِّ", "آ", "أ", "إ", "ؤ", "ئ", "ّْ", "enter"],
         ["shift", "َ", "ً", "ُ", "ٌ", "ِ", "ٍ", "ّ", "ْ", ":", ";", "?", "shift"],
-        ["symbol", "set", "lang", "space", "symbol", "close-keyboard"]
+        ["set", "lang", "numeric", "space", "numeric", "close-keyboard"]
+      ],
+      "numeric": [
+        ["tab", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "delete"],
+        ["capslock", "@", "#", "$", "&", "*", "(", ")", "'", "\"", "enter"],
+        ["symbol", "!", "/", "^", "%", "=", "-", "_", "shift"],
+        ["set", "lang", "ABC", "space", "ABC", "close-keyboard"]
       ],
       "symbol": [
         ["tab", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "delete"],
-        ["capslock", "@", "#", "$", "&", "*", "(", ")", "'", "\"", "enter"],
-        ["shift", "!", "/", "^", "%", "=", "-", "_", "shift"],
-        ["ABC", "set", "lang", "space", "ABC", "close-keyboard"]
-      ],
-      "numeric": [
-        ["7", "8", "9", "delete"],
-        ["4", "5", "6", "enter"],
-        ["1", "2", "3"],
-        ["0", "close-keyboard"]
+        ["capslock", "\\", "#", "|", "'", "*", "{", "}", "'", "\"", "enter"],
+        ["numeric", "!", "/", "^", "%", "=", "-", "_", "shift"],
+        ["set", "lang", "ABC", "space", "ABC", "close-keyboard"]
       ]
     }
    

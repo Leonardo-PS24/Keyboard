@@ -73,8 +73,8 @@ $(document).ready(function () {
                     case 'close-keyboard':
                         keyElement = '<div class="keyboard-key" data-key="close-keyboard"> <div class="keyboard-key" data-key="close-keyboard"> <div class="icon-container"> <i class="fa-solid fa-keyboard"></i> </div> <div class="icon-container"> <i class="fa-solid fa-chevron-down"></i> </div> </div> </div>';
                         break;
-                    case 'symbol':
-                        keyElement = '<div class="keyboard-key" data-key="symbol"> <b>123</b> </div>';
+                    case 'numeric':
+                        keyElement = '<div class="keyboard-key" data-key="numeric"> <b>123</b> </div>';
                         break;
                     case 'ABC':
                         keyElement = '<div class="keyboard-key" data-key="ABC"> <b>ABC</b> </div>';
@@ -84,6 +84,9 @@ $(document).ready(function () {
                         break;
                     case 'enter':
                         keyElement = '<div class="keyboard-key" data-key="enter"> <b>enter</b> </div>';
+                        break;
+                    case 'symbol':
+                        keyElement = '<div class="keyboard-key" data-key="symbol"> <b>#+=</b> </div>';
                         break;
                     default:
                         keyElement = '<div class="keyboard-key" data-keyval="' + key + '">' + key + '</div>';
@@ -95,10 +98,6 @@ $(document).ready(function () {
             $keyboardContainer.append($keyboardRow);
         });
     };
-    // $('input').focus(function () {
-    //     currentInputName = $(this).attr('id');
-    //     $('#keyboard-container').show();
-    // });
 
     // Funzione per la gestione del tipo di layout in base al tipo di input
     $('input').focus(function () {
@@ -109,7 +108,7 @@ $(document).ready(function () {
         var inputType = currentInput.attr('type');
 
         if ( inputType === 'number' || inputType === 'date') {
-            currentLayout = "numeric";
+            currentLayout = "symbol";
             updateKeyboardLayout();
 
         }else if (inputType === 'text'){
@@ -173,18 +172,17 @@ $(document).ready(function () {
         $('#keyboard-container').hide();
     });
 
-
     // Funzione per la gestione del tasto Setting
     $(document).on('click', '.keyboard-key[data-key="setting"]', function (event) {
         event.preventDefault();
         $('#settingsModal').modal('show');
     });
 
-    // Funzione per la gestione del tasto Symbol
-    $(document).on('mousedown', '.keyboard-key[data-key="symbol"]', function (event) {
+    // Funzione per la gestione del tasto Numeric
+    $(document).on('mousedown', '.keyboard-key[data-key="numeric"]', function (event) {
         event.preventDefault();
         if (currentLayout === 'normal') {
-            currentLayout = 'symbol';
+            currentLayout = 'numeric';
         } 
         updateKeyboardLayout();
     });
@@ -196,6 +194,21 @@ $(document).ready(function () {
         updateKeyboardLayout();
     });
 
+    // Funzione per la gestione del tasto Symbol
+    $(document).on('mousedown', '.keyboard-key[data-key="symbol"]', function (event) {
+        event.preventDefault();
+        if (currentLayout === 'numeric') {
+            currentLayout = 'symbol';
+        } 
+        updateKeyboardLayout();
+    });
+
+     // Funzione per la gestione del tasto 123
+     $(document).on('mousedown', '.keyboard-key[data-key="numeric"]', function (event) {
+        event.preventDefault();
+        currentLayout = 'numeric'; 
+        updateKeyboardLayout();
+    });
 
     $(document).on('click', '.keyboard-key[data-keyval]', function (event) {
         // Get the 'data-key' value of the clicked div
