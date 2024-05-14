@@ -38,7 +38,7 @@
         width: 430px;
     }
 
-    
+    .keyboard-key[data-key="layout"],
     .keyboard-key[data-key="delete"],
     .keyboard-key[data-key="tab"],
     .keyboard-key[data-key="enter"],
@@ -71,9 +71,7 @@
     
     .keyboard-key[data-key="numeric"],
     .keyboard-key[data-key="symbol"],
-    .keyboard-key[data-key="ABC"],
-    .keyboard-key[data-key="setting"],
-    .keyboard-key[data-key="layout"] {
+    .keyboard-key[data-key="ABC"] {
         background-color: var(--special-caps-background-color); 
         border: 1px solid var(--special-caps-border-color);
     }

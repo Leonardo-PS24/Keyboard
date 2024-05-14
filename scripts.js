@@ -39,7 +39,7 @@ $(document).ready(function () {
             rows = layout.symbol;
         }
 
-        if (currentLayout === 'numeric') {
+        if (currentLayout === 'numeric') {  
             rows = layout.numeric;
         }
 
@@ -66,9 +66,6 @@ $(document).ready(function () {
                         break;
                     case 'space':
                         keyElement = '<div class="keyboard-key" data-key=" "> </div>';
-                        break;
-                    case 'set':
-                        keyElement = '<div class="keyboard-key" data-key="setting"> <i class="fa-solid fa-gear"></i> </div>';
                         break;
                     case 'close-keyboard':
                         keyElement = '<div class="keyboard-key" data-key="close-keyboard"> <div class="keyboard-key" data-key="close-keyboard"> <div class="icon-container"> <i class="fa-solid fa-keyboard"></i> </div> <div class="icon-container"> <i class="fa-solid fa-chevron-down"></i> </div> </div> </div>';
@@ -108,7 +105,7 @@ $(document).ready(function () {
         var inputType = currentInput.attr('type');
 
         if ( inputType === 'number' || inputType === 'date') {
-            currentLayout = "symbol";
+            currentLayout = "numeric";
             updateKeyboardLayout();
 
         }else if (inputType === 'text'){
@@ -117,9 +114,21 @@ $(document).ready(function () {
         }
 
     });
-    
 
 
+    // Funzione per cambiare il colore di sfondo del testo "li" corrispondente alla lingua selezionata
+    function highlightSelectedLanguage() {
+        var languageOptions = document.querySelectorAll('.language-option');
+        languageOptions.forEach(function(option) {
+            if (option.dataset.value === currentLanguage) {
+                option.style.backgroundColor = '#03A4FF';
+                option.style.color = 'white';
+            } else {
+                option.style.backgroundColor = ''; // Reimposta il colore di sfondo predefinito
+                option.style.color = ''; // Reimposta il colore del testo predefinito
+            }
+        });
+    }
 
     // Funzione per la gestione del tasto Caps Lock
     $(document).on('mousedown', '.keyboard-key[data-key="capslock"]', function (event) {
@@ -170,12 +179,6 @@ $(document).ready(function () {
         event.preventDefault();
         $('#' + currentInputName).blur();
         $('#keyboard-container').hide();
-    });
-
-    // Funzione per la gestione del tasto Setting
-    $(document).on('click', '.keyboard-key[data-key="setting"]', function (event) {
-        event.preventDefault();
-        $('#settingsModal').modal('show');
     });
 
     // Funzione per la gestione del tasto Numeric
@@ -246,6 +249,8 @@ $(document).ready(function () {
     $(document).on('click', '.keyboard-key[data-key="layout"]', function (event) {
         event.stopPropagation();
         $('#languageModal').modal('show');
+        // Chiamata alla funzione per evidenziare la lingua selezionata
+        highlightSelectedLanguage();
     });
     
     $(document).on('click', '.language-option', function () {
