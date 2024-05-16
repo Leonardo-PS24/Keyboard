@@ -104,14 +104,13 @@ $(document).ready(function () {
 
         var inputType = currentInput.attr('type');
 
-        if ( inputType === 'number' || inputType === 'date') {
-            currentLayout = "numeric";
-            updateKeyboardLayout();
-
-        }else if (inputType === 'text'){
+        if ( inputType === 'text' ) {
             currentLayout = "normal";
-            updateKeyboardLayout();
+    
+        }else{
+            currentLayout = "numeric";
         }
+        updateKeyboardLayout();
 
     });
 
@@ -124,8 +123,8 @@ $(document).ready(function () {
                 option.style.backgroundColor = '#03A4FF';
                 option.style.color = 'white';
             } else {
-                option.style.backgroundColor = ''; // Reimposta il colore di sfondo predefinito
-                option.style.color = ''; // Reimposta il colore del testo predefinito
+                option.style.backgroundColor = ''; 
+                option.style.color = ''; 
             }
         });
     }
