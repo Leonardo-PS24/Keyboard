@@ -55,7 +55,4 @@ Sii libero di aprire una pull request per contribuire con nuove funzionalità, c
 
 ## Licenza
 
-> [!NOTE]
-> ainvkan
-
 Questo progetto è concesso in licenza sotto i termini della Licenza MIT.
